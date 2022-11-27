@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Contraseñas</title>
+</head>
+<body>
+    <br>
+    <h1 class="title has-text-centered is-underlined" >Contraseñas</h1>
+    <div class="container">
+    <br>
+    <div class="container">
+        <div class="columns is-gapless is-multiline is-mobile">
+            <div class="column is-12">
+                <p class="has-text-centered">Seleccione lo que quiere hacer:</p>
+                <br>
+            </div>
+            <div class="column is-4">
+            </div>
+        <div class="field is-grouped is-grouped-centered column is-4">
+            <div class="select is-normal">
+                <select name="selectUsuario" id="selectUsuario" onchange="queHacer(selectUsuario.value)">
+                  <option selected>¿Qué quiere hacer?</option>
+                  <option value="validar">Validar su contraseña</option>
+                  <option value="generarAleatorio">Generar una constraseña aleatoria</option>
+                  <option value="generarUsuario">Generar una constraseña con palabras a su elección</option>
+                </select>
+              </div>
+        </select> 
+      </div>
+      <div class="column is-4">
+    </div>
+    </div>
+</div>
+    <div id="zona">
+    </div>
+    
+    <script>
+        const queHacer = (selectUsuario) => {
+            document.getElementById("zona").innerHTML = ``
+            switch (selectUsuario) {
+                case "validar":
+                    document.getElementById("zona").innerHTML += `<section class="section">
+        <div class="columns is-gapless is-multiline is-mobile">
+            <div class="column is-4">
+            </div>
+            <div class="column is-4">
+                <input class="input" type="text" name="password" id="password" placeholder="Ingrese su contraseña">
+            </div>
+            <div class="column is-4">
+            </div>
+            <div class="column is-12">
+                <br>
+                <div class="field is-grouped is-grouped-centered">
+                    <p class="control">
+                      <button onclick="validador(password.value)" class="button is-primary">Validar</button>
+                    </p>
+                </div>
+        </div>
+    </section>
+    <div id="validadorZona"></div>
+    </div>`
+                    break;
+
+                case "generarAleatorio":
+                    document.getElementById("zona").innerHTML += `
+                    <br>
+                    <div id="zonaGenerar"></div>
+                    <br>
+                    <div class="field is-grouped is-grouped-centered">
+                        <p class="control">
+                         <button onclick="generarPasswordAleatoria()" class="button is-primary">Generar otra</button>
+                        </p>
+                    </div>`
+                    
+                    generarPasswordAleatoria()
+                    break;
+
+                    case "generarUsuario":
+                    document.getElementById("zona").innerHTML += `
+                    <br>
+                    <div class="columns is-gapless is-multiline is-mobile" id="rutas">
+                    <div class="column is-2">
+                    </div>
+                    <div class="column is-4">
+                        <input class="input" type="text" name="palabra1" id="palabra1" placeholder="Ingrese una palabra para la contraseña">
+                    </div>
+                    <div class="column is-4">
+                        <input class="input" type="text" name="palabra2" id="palabra2" placeholder="Ingrese otra palabra para la contraseña">
+                    </div>
+                    <div class="column is-2">
+                    </div>
+                    <div class="column is-2">
+                    </div>
+                    <div class="column is-4">
+                        <input class="input" type="text" name="numero" id="numero" placeholder="Ingrese un número">
+                    </div>
+                    <div class="column is-4">
+                    <input class="input" type="text" name="especial" id="especial" placeholder="Ingrese un caracter especial">
+                    </div>
+                    <div class="column is-2">
+                    </div>
+                </div>
+                    <div class="field is-grouped is-grouped-centered">
+                        <p class="control">
+                         <button onclick="generarPasswordUsuario(palabra1.value, palabra2.value, numero.value, especial.value)" class="button is-primary">Generar</button>
+                        </p>
+                    </div>
+                  <br>
+                    <div id="zonaGenerar"></div>`
+                    break;
+            }
+        }
+    </script>
+    <script src="validador.js"></script>
+    <script src="generador.js"></script>
+</body>
+</html>
+
+
